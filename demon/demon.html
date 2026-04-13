@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>ДЕМОНОЛОГИЯ | Психология теневой власти</title>
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: мрачная элегантность + агрессивный гротеск -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700;800&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #050105;
+            background-image: radial-gradient(circle at 15% 30%, rgba(45, 10, 40, 0.6) 0%, #020001 90%);
+            color: #eae6e6;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+            font-weight: 400;
+        }
+
+        /* провокативный скролл-бар */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a0a1a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #a1222a;
+            border-radius: 4px;
+            box-shadow: inset 0 0 4px #ff3b3b;
+        }
+
+        /* общие контейнеры */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* типографика */
+        h1, h2, h3, .demon-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2.8rem, 8vw, 5.2rem);
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #FFF8E7 20%, #e6b8b8 50%, #c73c3c 90%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 8px rgba(199, 60, 60, 0.4);
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            border-left: 6px solid #c12a2f;
+            padding-left: 1rem;
+            margin: 2.5rem 0 1.5rem 0;
+            letter-spacing: -0.01em;
+            color: #fae6e6;
+            text-transform: uppercase;
+        }
+
+        .hero-sub {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #cf9f9f;
+            border-bottom: 1px dashed #a22a2f;
+            display: inline-block;
+            padding-bottom: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .provocative-text {
+            font-size: 1.1rem;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(2px);
+            padding: 1.2rem;
+            border-radius: 24px;
+            border: 1px solid rgba(193, 42, 47, 0.4);
+        }
+
+        /* карточки демонов */
+        .demons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2.5rem 0;
+        }
+
+        .demon-card {
+            background: rgba(10, 2, 12, 0.75);
+            backdrop-filter: blur(4px);
+            border-radius: 32px;
+            padding: 1.8rem;
+            border: 1px solid rgba(199, 60, 60, 0.5);
+            transition: all 0.3s ease;
+            box-shadow: 0 15px 30px -12px rgba(0,0,0,0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demon-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: #c12a2f;
+            transition: width 0.2s;
+        }
+
+        .demon-card:hover {
+            transform: translateY(-6px);
+            border-color: #e67a7a;
+            box-shadow: 0 0 20px rgba(199, 60, 60, 0.3);
+            background: rgba(20, 4, 20, 0.85);
+        }
+
+        .demon-card:hover::before {
+            width: 8px;
+        }
+
+        .demon-name {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #e65c5c;
+            margin-bottom: 0.3rem;
+            letter-spacing: 1px;
+        }
+
+        .demon-sub {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #f0b3b3;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #63222a;
+            display: inline-block;
+        }
+
+        .demon-desc {
+            font-size: 0.95rem;
+            color: #ddd2d2;
+            line-height: 1.45;
+        }
+
+        /* секции преимуществ */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.8rem;
+            margin: 2rem 0;
+        }
+
+        .feature-item {
+            background: #0d040d;
+            padding: 1.5rem;
+            border-radius: 24px;
+            border-left: 3px solid #c12a2f;
+            transition: 0.2s;
+        }
+
+        .feature-item i {
+            font-size: 2.2rem;
+            color: #c74747;
+            margin-bottom: 1rem;
+        }
+
+        .feature-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.6rem;
+        }
+
+        /* для кого */
+        .who-list {
+            background: #0a010a;
+            border-radius: 28px;
+            padding: 1.8rem 2rem;
+            list-style: none;
+            border: 1px solid #551e22;
+        }
+        .who-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.8rem;
+            position: relative;
+            font-weight: 500;
+        }
+        .who-list li i {
+            color: #c12a2f;
+            position: absolute;
+            left: 0;
+            top: 0.2rem;
+        }
+
+        /* кнопки */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #a1222a;
+            color: #fff;
+            font-weight: 700;
+            padding: 14px 32px;
+            border-radius: 60px;
+            text-decoration: none;
+            transition: 0.2s;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #b33b3b;
+            color: #f0c0c0;
+        }
+
+        .btn-outline:hover {
+            background: #b33b3b;
+            color: #fff;
+            border-color: #b33b3b;
+            box-shadow: 0 0 12px #c02a2f;
+        }
+
+        .btn:hover {
+            background: #c12a2f;
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(193, 42, 47, 0.6);
+        }
+
+        .contact-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 2rem 0;
+            justify-content: center;
+        }
+
+        /* footer */
+        .footer {
+            text-align: center;
+            margin-top: 5rem;
+            padding: 2rem;
+            border-top: 1px solid #2c1420;
+            font-size: 0.75rem;
+            color: #8f6c6c;
+        }
+
+        /* glow для акцентов */
+        .glow {
+            text-shadow: 0 0 6px #c0222a;
+        }
+
+        .badge {
+            background: #a1222a20;
+            backdrop-filter: blur(2px);
+            border-radius: 40px;
+            padding: 0.2rem 1rem;
+            font-size: 0.8rem;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        /* анимация при скролле (просто fade) */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 680px) {
+            .container {
+                padding: 0 20px;
+            }
+            .demon-name {
+                font-size: 1.6rem;
+            }
+            .contact-buttons a {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Hero -->
+        <section style="padding: 3rem 0 1rem 0;">
+            <div class="fade-up">
+                <span class="badge"><i class="fas fa-skull"></i> 18+ только для "ведьмаков" и "ведьм"</span>
+                <h1>КУРС «ДЕМОНОЛОГИЯ:<br>ПСИХОЛОГИЯ ТЕНЕВОЙ ВЛАСТИ»</h1>
+                <div class="hero-sub">8 занятий, которые превратят твоих внутренних врагов в верных слуг.</div>
+                <p class="provocative-text" style="margin-top: 1.2rem;">
+                    <i class="fas fa-fire" style="color:#e65c5c; margin-right: 8px;"></i> 
+                    Первый курс был про <strong>ЭНЕРГЕТИЧЕСКУЮ ГИГИЕНУ</strong>. Мы строили границы, чистили прошлое, изгоняли чужие программы. 
+                    Это было необходимо, чтобы ты перестала быть помойкой для чужих ожиданий.<br>
+                    <strong style="color:#e68a8a;">Второй курс — про ВЛАСТЬ.</strong> Мы не будем ничего изгонять. Мы будем ОТКРЫВАТЬ ДВЕРИ, 
+                    которые ты заколотила в детстве, и знакомиться с теми, кто там живёт.
+                </p>
+            </div>
+        </section>
+
+        <!-- Демоны: КТО ЖИВЁТ В ТВОЁМ ПОДВАЛЕ? -->
+        <section>
+            <h2 class="fade-up"><i class="fas fa-dragon"></i> КТО ЖИВЁТ В ТВОЁМ ПОДВАЛЕ?</h2>
+            <div class="demons-grid">
+                <!-- ГНЕВА -->
+                <div class="demon-card fade-up">
+                    <div class="demon-name">ДЕМОН ГНЕВА</div>
+                    <div class="demon-sub">не разрушитель, а твой МЕЧ</div>
+                    <div class="demon-desc">Его ярость — это топливо для границ. Он даёт тебе силу сказать: «НЕТ» и остаться на месте, когда мир давит.</div>
+                </div>
+                <!-- ЗАВИСТИ -->
+                <div class="demon-card fade-up">
+                    <div class="demon-name">ДЕМОН ЗАВИСТИ</div>
+                    <div class="demon-sub">не червь, а твой КОМПАС</div>
+                    <div class="demon-desc">Он показывает, чего ты на самом деле хочешь, но боишься себе позволить. Каждая вспышка зависти — это карта к твоему истинному желанию.</div>
+                </div>
+                <!-- ПОХОТИ -->
+                <div class="demon-card fade-up">
+                    <div class="demon-name">ДЕМОН ПОХОТИ</div>
+                    <div class="demon-sub">не грех, а твоя ЖИВОТВОРЯЩАЯ СИЛА</div>
+                    <div class="demon-desc">Это либидо, драйв, вдохновение, творчество, страсть. Без него ты — стерильная, правильная, мёртвая.</div>
+                </div>
+                <!-- ЖАДНОСТИ -->
+                <div class="demon-card fade-up">
+                    <div class="demon-name">ДЕМОН ЖАДНОСТИ</div>
+                    <div class="demon-sub">не порок, а твоё ПРАВО НА ИЗОБИЛИЕ</div>
+                    <div class="demon-desc">Он помогает удерживать ресурсы, не раздавать себя по кусочкам и требовать достойную плату за свою жизнь.</div>
+                </div>
+                <!-- СТРАХА -->
+                <div class="demon-card fade-up">
+                    <div class="demon-name">ДЕМОН СТРАХА</div>
+                    <div class="demon-sub">не парализатор, а твоя ОСТОРОЖНОСТЬ</div>
+                    <div class="demon-desc">Он предупреждает о реальной опасности, когда ты слушаешь его, а не убегаешь.</div>
+                </div>
+                <!-- ГОРДЫНИ -->
+                <div class="demon-card fade-up">
+                    <div class="demon-name">ДЕМОН ГОРДЫНИ</div>
+                    <div class="demon-sub">не грех, а твоя ЗДОРОВАЯ САМООЦЕНКА</div>
+                    <div class="demon-desc">Он не даёт тебе сжиматься, чтобы другим было удобно. Он говорит: «Я достойна своего места на вершине».</div>
+                </div>
+            </div>
+            <div class="fade-up" style="text-align: center; margin-top: 0.5rem;">
+                <span class="badge"><i class="fas fa-crown"></i> Владычица теней, встречай свою армию</span>
+            </div>
+        </section>
+
+        <!-- ЧТО ТЫ ПОЛУЧИШЬ -->
+        <section>
+            <h2 class="fade-up"><i class="fas fa-scroll"></i> ЧТО ТЫ ПОЛУЧИШЬ?</h2>
+            <div class="features-grid">
+                <div class="feature-item fade-up"><i class="fas fa-book-skull"></i><h3>«Гримуар Демонов»</h3><p>Личную книгу, где ты пропишешь договоры со своей тенью. Навсегда.</p></div>
+                <div class="feature-item fade-up"><i class="fas fa-magic"></i><h3>Ритуалы призыва и подчинения</h3><p>Не театр, а мощные психотехники, которые изменят твоё отношение к себе.</p></div>
+                <div class="feature-item fade-up"><i class="fas fa-map"></i><h3>Карта твоего подземелья</h3><p>Визуальное понимание, где что лежит и как этим управлять.</p></div>
+                <div class="feature-item fade-up"><i class="fas fa-dove"></i><h3>Целостность</h3><p>Перестанешь тратить энергию на подавление и начнёшь использовать всё, что есть внутри, для достижения целей.</p></div>
+                <div class="feature-item fade-up"><i class="fas fa-crown"></i><h3>Власть</h3><p>Когда все демоны выстроятся в строй и принесут клятву, ты станешь не просто ведьмой, защищающей свой дом, а ВЛАДЫЧИЦЕЙ, управляющей целым королевством сил.</p></div>
+            </div>
+        </section>
+
+        <!-- ДЛЯ КОГО ЭТОТ КУРС -->
+        <section>
+            <h2 class="fade-up"><i class="fas fa-eye"></i> ДЛЯ КОГО ЭТОТ КУРС?</h2>
+            <ul class="who-list fade-up">
+                <li><i class="fas fa-crow"></i> Для тех, кто прошёл «Психология Ведьмы» и чувствует, что «чистота» — это ещё не всё.</li>
+                <li><i class="fas fa-fire"></i> Для тех, кто устал подавлять свою ярость, зависть, жадность, похоть и страх, и готов их использовать.</li>
+                <li><i class="fas fa-fist-raised"></i> Для тех, кто хочет не просто защищаться, а НАПАДАТЬ. Достигать. Брать своё. Жить в полную силу.</li>
+                <li><i class="fas fa-mask"></i> Для тех, кто не боится смотреть в лицо самой себе. Даже в самое тёмное лицо.</li>
+            </ul>
+        </section>
+
+        <!-- ФОРМАТ -->
+        <section>
+            <h2 class="fade-up"><i class="fas fa-chalkboard-user"></i> ФОРМАТ СИЛЫ</h2>
+            <div class="provocative-text fade-up" style="margin-bottom: 1rem;">
+                <i class="fas fa-hourglass-half"></i> <strong>8 индивидуальных занятий (60–75 мин)</strong><br>
+                Всё, как в первом курсе: мощные ритуалы, провокативная магия, жёсткая психология.<br>
+                Работаем с тенью через тело, образы, договоры, символические действия.<br>
+                Домашние задания, которые реально меняют жизнь, а не просто «подумать и записать».
+            </div>
+            <div class="badge" style="background:#631f24; margin-top: 8px;"><i class="fas fa-hand-sparkles"></i> Ритуальная психотерапия. Никакой воды.</div>
+        </section>
+
+        <!-- КОНТАКТЫ + ПРОВОКАЦИЯ ЗАПИСИ -->
+        <section style="margin: 4rem 0 2rem;">
+            <div style="text-align: center;" class="fade-up">
+                <i class="fas fa-skull" style="font-size: 2rem; color:#c14a4a;"></i>
+                <h2 style="border-left: none; text-align: center;">ПРИЗОВИ СВОЮ СИЛУ</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 1.5rem;">Твои демоны ждут приказа. Начни ритуал уже сегодня.</p>
+                <div class="contact-buttons">
+                    <a href="https://t.me/provocativepro" class="btn" target="_blank" rel="noopener noreferrer" style="background: #26A5E4; box-shadow: 0 0 12px #26A5E4;">
+                        <i class="fab fa-telegram"></i> Telegram: @ProvocativePro
+                    </a>
+                    <a href="mailto:ifakoya@yandex.ru" class="btn-outline btn">
+                        <i class="fas fa-envelope"></i> ifakoya@yandex.ru
+                    </a>
+                    <a href="https://max.ru/u/f9LHodD0cOKa02Wv2i-GhU8WpZ56BR9-GzqYa_IVT8cWZMo2uZAIoRPBTSU" target="_blank" rel="noopener noreferrer" class="btn-outline btn" style="border-color: #508cfd; color:#508cfd;">
+                        <i class="fas fa-link"></i> Демонический MAX
+                    </a>
+                </div>
+                <p class="badge" style="margin-top: 1rem;"><i class="fas fa-shield-alt"></i> Количество мест ограничено. Теневая работа требует пространства.</p>
+            </div>
+        </section>
+
+        <footer class="footer fade-up">
+            <p>© КУРС «ДЕМОНОЛОГИЯ» — Психология теневой власти. Вся провокация во благо твоей целостности.<br>
+            Не является медицинской услугой. Работа с метафорическими демонами, алхимия психики.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Плавное появление при скролле (fade-up)
+        const fadeElements = document.querySelectorAll('.fade-up');
+        
+        function checkFade() {
+            fadeElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+                if (rect.top <= windowHeight - 100) {
+                    el.classList.add('visible');
+                } else {
+                    // можно оставить как есть, но чтобы не мерцало - не убираем класс после добавления
+                    if(!el.classList.contains('visible')) {
+                        // ничего, остаётся невидимым до появления
+                    }
+                }
+            });
+        }
+
+        // Добавляем класс visible для уже видимых при загрузке
+        window.addEventListener('load', () => {
+            checkFade();
+            // добавим агрессивный эффект - курсор мыши создает кровавый след? нет, но небольшой динамический glow на карточках
+        });
+        window.addEventListener('scroll', checkFade);
+        checkFade(); // вызов на старте
+
+        // Дополнительный провокативный элемент: динамическая подсветка заголовка демонов при наведении
+        const demonCards = document.querySelectorAll('.demon-card');
+        demonCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.boxShadow = '0 0 25px rgba(199, 60, 60, 0.7)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.boxShadow = '0 15px 30px -12px rgba(0,0,0,0.6)';
+            });
+        });
+
+        // маленькая магия: рандомное мерцание для провокации
+        const glitchTitles = document.querySelectorAll('h1, h2');
+        setInterval(() => {
+            glitchTitles.forEach(title => {
+                if(Math.random() < 0.03) {
+                    title.style.textShadow = '2px 0 0 #ff0000, -2px 0 0 #990000';
+                    setTimeout(() => {
+                        title.style.textShadow = '';
+                    }, 100);
+                }
+            });
+        }, 2000);
+    </script>
+</body>
+</html>

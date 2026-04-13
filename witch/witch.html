@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Курс Стервы</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:ital@0;1&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-1: #000000; --bg-2: #1a001a; --bg-3: #2d001a;
+            --accent-1: #ff0033; --accent-2: #cc0000; --accent-3: #990033;
+            --text-main: #ffffff; --text-muted: #f0e6d6; --gold: #ffd700;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+            background: linear-gradient(180deg, var(--bg-1), var(--bg-3));
+            color: var(--text-main);
+            line-height: 1.4;
+            min-height: 100vh;
+            padding-bottom: 80px; /* Space for fixed button */
+        }
+
+        .container {
+            max-width: 100%;
+            padding: 16px;
+        }
+
+        /* Header with back button */
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .back-button {
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 18px;
+            padding: 8px;
+            margin-right: 12px;
+            cursor: pointer;
+        }
+
+        .title {
+            font-family: "UnifrakturCook", serif;
+            font-size: 20px;
+            color: var(--gold);
+        }
+
+        /* Hero section */
+        .hero {
+            text-align: center;
+            padding: 20px 0;
+            position: relative;
+            background: radial-gradient(circle at top right, rgba(255, 0, 51, 0.1), transparent 50%);
+        }
+
+        .kicker {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, rgba(255, 0, 51, 0.2), rgba(204, 0, 0, 0.1));
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 12px;
+            font-size: 12px;
+            animation: flicker 3s ease-in-out infinite;
+        }
+
+        .hero-title {
+            font-family: "UnifrakturCook", serif;
+            font-size: 28px;
+            margin-bottom: 12px;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        .hero-subtitle {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        /* Cards */
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: pulse-red 6s ease-in-out infinite;
+        }
+
+        .lesson-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lesson-card:active {
+            transform: scale(0.98);
+            background: rgba(255, 0, 51, 0.1);
+        }
+
+        .lesson-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, rgba(255, 0, 51, 0.15), rgba(153, 0, 51, 0.08));
+            color: var(--gold);
+            font-size: 16px;
+        }
+
+        .lesson-content {
+            flex: 1;
+        }
+
+        .lesson-title {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+
+        .lesson-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Fixed bottom button */
+        .fixed-bottom {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 16px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+        }
+
+        .tma-button {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            animation: pulse-red 3s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .tma-button:active {
+            transform: scale(0.98);
+        }
+
+        /* Modal styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: linear-gradient(180deg, rgba(30, 0, 20, 0.95), rgba(10, 0, 10, 0.98));
+            border-radius: 16px;
+            padding: 20px;
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid rgba(255, 0, 51, 0.3);
+            animation: pulse-red 3s ease-in-out infinite;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .modal-title {
+            font-family: "UnifrakturCook", serif;
+            color: var(--gold);
+            font-size: 18px;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* Form styles */
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.5);
+            color: var(--text-main);
+            font-size: 16px;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent-1);
+        }
+
+        /* Animations */
+        @keyframes pulse-red {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 0, 51, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(255, 0, 51, 0.6), 0 0 50px rgba(255, 0, 51, 0.2); }
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px rgba(255, 0, 51, 0.5); }
+            50% { text-shadow: 0 0 20px rgba(255, 0, 51, 0.8), 0 0 30px rgba(255, 0, 51, 0.4); }
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Utility classes */
+        .section-title {
+            font-family: "UnifrakturCook", serif;
+            color: var(--gold);
+            font-size: 18px;
+            margin: 24px 0 16px 0;
+            text-align: center;
+            animation: glow 4s ease-in-out infinite;
+        }
+
+        .text-center { text-align: center; }
+        .mb-16 { margin-bottom: 16px; }
+        .mb-8 { margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <button class="back-button" onclick="handleBack()">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <div class="title">Курс Стервы</div>
+        </div>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="kicker">ТВОЁ ПРЕОБРАЖЕНИЕ</div>
+            <h1 class="hero-title">Хватит быть Золушкой</h1>
+            <p class="hero-subtitle">
+                Пора стать Стервой. Твой принц — это ты. Забери свою силу, деньги и власть над жизнью.
+            </p>
+        </section>
+
+        <!-- Problem Card -->
+        <section class="mb-16">
+            <div class="card">
+                <h3 class="mb-8" style="color: var(--gold);">Проклятие розового коучинга</h3>
+                <p style="font-size: 14px; color: var(--text-muted);">
+                    Хватит слушать про "мысли позитивно". Пора ЗАХВАТЫВАТЬ ВЛАСТЬ. Этот курс — инструкция по взлому реальности.
+                </p>
+            </div>
+        </section>
+
+        <!-- Program Section -->
+        <section>
+            <h2 class="section-title">8 Ритуалов Перерождения</h2>
+            
+            <div class="lesson-card" onclick="openLessonModal(1)">
+                <div class="lesson-icon">
+                    <i class="fas fa-skull"></i>
+                </div>
+                <div class="lesson-content">
+                    <div class="lesson-title">Проклятие милой девочки</div>
+                    <div class="lesson-desc">Убей в себе удобную куклу</div>
+                </div>
+            </div>
+
+            <div class="lesson-card" onclick="openLessonModal(2)">
+                <div class="lesson-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="lesson-content">
+                    <div class="lesson-title">Амулет «Не пробьешь»</div>
+                    <div class="lesson-desc">Стальные границы против токсичных</div>
+                </div>
+            </div>
+
+            <div class="lesson-card" onclick="openLessonModal(3)">
+                <div class="lesson-icon">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <div class="lesson-content">
+                    <div class="lesson-title">Талисман «Хочу и буду»</div>
+                    <div class="lesson-desc">Взлом мозга как радар на деньги</div>
+                </div>
+            </div>
+
+            <div class="lesson-card" onclick="openLessonModal(4)">
+                <div class="lesson-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="lesson-content">
+                    <div class="lesson-title">Приворот к себе</div>
+                    <div class="lesson-desc">Любовь к себе до нарциссизма</div>
+                </div>
+            </div>
+
+            <!-- Show more button -->
+            <div class="text-center mb-16">
+                <button onclick="showAllLessons()" style="
+                    background: none;
+                    border: 1px solid var(--accent-1);
+                    color: var(--accent-1);
+                    padding: 8px 16px;
+                    border-radius: 8px;
+                    font-size: 14px;
+                ">
+                    Показать все занятия
+                </button>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section>
+            <h2 class="section-title">Твои Магические Артефакты</h2>
+            
+            <div class="card mb-8">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                    <div class="lesson-icon">
+                        <i class="fas fa-shield"></i>
+                    </div>
+                    <div>
+                        <div style="font-weight: 600;">Амулет-охранник</div>
+                        <div style="font-size: 12px; color: var(--text-muted);">Чуешь ложь за версту</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-8">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                    <div class="lesson-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div>
+                        <div style="font-weight: 600;">Талисман-цель</div>
+                        <div style="font-size: 12px; color: var(--text-muted);">Ведущий к деньгам магнит</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA Card -->
+        <section class="mb-16">
+            <div class="card text-center">
+                <h3 class="mb-8" style="color: var(--gold);">Хватит ползать. Пора летать на метле.</h3>
+                <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 16px;">
+                    Стань Хозяйкой своей Судьбы. Той, которую боятся и которой хотят стать.
+                </p>
+                <button class="tma-button" onclick="openBookingModal()">
+                    <i class="fas fa-fire"></i>
+                    ЗАБРОНИРОВАТЬ МЕСТО
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Fixed Bottom Button -->
+    <div class="fixed-bottom">
+        <button class="tma-button" onclick="openBookingModal()">
+            <i class="fas fa-magic"></i>
+            НАЧАТЬ ПРЕОБРАЖЕНИЕ
+        </button>
+    </div>
+
+    <!-- Lesson Detail Modal -->
+    <div class="modal-overlay" id="lessonModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="lessonModalTitle">Занятие</h3>
+                <button class="modal-close" onclick="closeLessonModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="lessonModalContent">
+                <!-- Content will be loaded here -->
+            </div>
+            <button class="tma-button" onclick="openBookingModal()" style="margin-top: 16px;">
+                <i class="fas fa-fire"></i>
+                ЗАБРОНИРОВАТЬ
+            </button>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div class="modal-overlay" id="bookingModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Бронь места в аду</h3>
+                <button class="modal-close" onclick="closeBookingModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <form id="bookingForm" onsubmit="handleBooking(event)">
+                <div class="form-group">
+                    <input type="text" class="form-input" id="userName" 
+                           placeholder="Твоё имя" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-input" id="userTelegram" 
+                           placeholder="Telegram для связи" required>
+                </div>                
+                <button type="submit" class="tma-button" id="submitButton">
+                    <i class="fas fa-hand-sparkles"></i>
+                    СКРЕПИТЬ ДОГОВОР
+                </button>
+            </form>
+            
+            <p style="font-size: 12px; color: var(--text-muted); text-align: center; margin-top: 12px;">
+                Нажимая, ты соглашаешься с условиями договора с Дьяволом (со своей силой)
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Ссылка для бронирования (открывается при нажатии на любую кнопку брони)
+        const BOOKING_URL = "https://max.ru/u/f9LHodD0cOKa02Wv2i-GhU8WpZ56BR9-GzqYa_IVT8cWZMo2uZAIoRPBTSU";
+
+        // Функции для модальных окон
+        function openLessonModal(lessonNumber) {
+            const lessons = {
+                1: {
+                    title: "Проклятие милой девочки",
+                    content: `<p>Ты убьёшь в себе куклу, которая должна быть удобной, и выпустишь на свободу свою внутреннюю Сучку-Владычицу.</p>
+                             <p><strong>Результат:</strong> Ты перестанешь быть "удобной" и начнёшь быть "эффективной".</p>`
+                },
+                2: {
+                    title: "Амулет «Не пробьешь»",
+                    content: `<p>Ты отольёшь из стали свои личные границы. Ни один мудак и ни одна токсичная мамаша больше не пройдут.</p>
+                             <p><strong>Результат:</strong> Защита от энергетических вампиров и манипуляторов.</p>`
+                },
+                3: {
+                    title: "Талисман «Хочу и буду»", 
+                    content: `<p>Ты взломаешь мозг как радар на деньги. Твоя цель будет как проклятие — преследовать тебя, пока не сдашься.</p>
+                             <p><strong>Результат:</strong> Деньги начинают липнуть к тебе как по волшебству.</p>`
+                },
+                4: {
+                    title: "Приворот к себе любимой",
+                    content: `<p>Ты доведешь любовь к себе до нарциссизма. Комплименты станут просто приятным фоном, а не кислородной маской.</p>
+                             <p><strong>Результат:</strong> Самооценка, которую не сломить.</p>`
+                }
+            };
+            
+            const lesson = lessons[lessonNumber];
+            if (lesson) {
+                document.getElementById('lessonModalTitle').textContent = lesson.title;
+                document.getElementById('lessonModalContent').innerHTML = lesson.content;
+                document.getElementById('lessonModal').style.display = 'flex';
+            }
+        }
+
+        function closeLessonModal() {
+            document.getElementById('lessonModal').style.display = 'none';
+        }
+
+        function openBookingModal() {
+            // Открываем ссылку в новой вкладке
+            window.open(BOOKING_URL, '_blank');
+            // Также можно было бы показать модалку с формой, но по заданию — просто ссылка
+        }
+
+        function closeBookingModal() {
+            document.getElementById('bookingModal').style.display = 'none';
+        }
+
+        function handleBooking(event) {
+            event.preventDefault();
+            // Отправляем данные (опционально) — для простоты тоже открываем ссылку
+            window.open(BOOKING_URL, '_blank');
+            closeBookingModal();
+        }
+
+        function showAllLessons() {
+            alert("Все 8 занятий:\n1. Проклятие милой девочки\n2. Амулет «Не пробьешь»\n3. Талисман «Хочу и буду»\n4. Приворот к себе\n5. Отворот и порча\n6. Кладбищенский ход\n7. Снятие порчи\n8. Манифест Ведьмы");
+        }
+
+        function handleBack() {
+            if (document.getElementById('lessonModal').style.display === 'flex') {
+                closeLessonModal();
+            } else if (document.getElementById('bookingModal').style.display === 'flex') {
+                closeBookingModal();
+            } else {
+                // В обычном браузере можно попробовать вернуться назад
+                window.history.back();
+            }
+        }
+
+        // Заполнение имени пользователя (если доступно из Telegram больше не используем)
+        // Можно просто оставить поля пустыми
+    </script>
+</body>
+</html>
