@@ -3,11 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Прохор Руднев | Провокативный психолог & Гипнотерапевт</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>Прохор Руднев | Провокативный психолог, семейный и гипнотерапевт — онлайн-сессии</title>
+    <meta name="description" content="Прохор Руднев — провокативный психолог, семейный и гипнотерапевт. Решаю проблемы через юмор, метафоры и абсурд. Онлайн-сессии 4000₽. Запишись на провокацию!">
+    <meta name="keywords" content="провокативный психолог, гипнотерапевт, семейный терапевт, психолог онлайн, провокативная психотерапия, Прохор Руднев, семейная терапия, психолог Москва, сессия психолога">
+    <meta name="author" content="Прохор Руднев">
+    <link rel="canonical" href="https://provoke.expert">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Прохор Руднев — провокативный психолог, семейный и гипнотерапевт">
+    <meta property="og:description" content="Решаю проблемы через юмор, метафоры и абсурд. Онлайн-сессии 4000₽. Запишись на провокацию!">
+    <meta property="og:image" content="me-photo.jpg">
+    <meta property="og:url" content="https://provoke.expert">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ru_RU">
+    
+    <!-- Twitter Card (optional) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Прохор Руднев | Провокативный психолог и семейный терапевт">
+    <meta name="twitter:description" content="Онлайн-сессии, гипнотерапия, семейная терапия. Провокация как ресурс.">
+    <meta name="twitter:image" content="me-photo.jpg">
+    
     <!-- Google Fonts & Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <style>
+        /* ваш существующий стиль без изменений */
         * {
             margin: 0;
             padding: 0;
@@ -33,7 +56,6 @@
             padding: 0 24px;
         }
 
-        /* типичные дикие акценты */
         .section {
             padding: 80px 0;
             border-bottom: 1px solid rgba(255, 68, 204, 0.2);
@@ -111,7 +133,6 @@
             box-shadow: 0 0 20px #ff66dd;
         }
 
-        /* hero layout */
         .hero {
             display: flex;
             flex-wrap: wrap;
@@ -127,47 +148,43 @@
             flex: 0.8;
             display: flex;
             justify-content: center;
+            filter: drop-shadow(0 0 15px #ff44cc);
         }
         .photo-frame {
             width: 320px;
             height: 320px;
-            border-radius: 40% 60% 30% 70% / 50% 40% 60% 50%;
+            border-radius: 30% 70% 40% 60% / 50% 40% 60% 50%;
             background: linear-gradient(135deg, #ff44cc, #ffaa33);
             padding: 5px;
-            box-shadow: 0 20px 35px -15px rgba(255, 68, 204, 0.5);
+            box-shadow: 0 0 35px #ff44cc, 0 20px 35px -10px black;
             transition: 0.3s;
+            animation: borderPulse 2s infinite;
+        }
+        @keyframes borderPulse {
+            0% { box-shadow: 0 0 5px #ff44cc, 0 20px 30px -10px black; }
+            100% { box-shadow: 0 0 25px #ff66dd, 0 20px 35px -5px #ff44aa; }
         }
         .photo-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 38% 62% 28% 72% / 48% 38% 62% 52%;
+            border-radius: 28% 72% 38% 62% / 48% 38% 62% 52%;
             display: block;
-        }
-        .placeholder-photo {
-            background: #2a2533;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            color: #aaa;
-            text-align: center;
-            flex-direction: column;
-            gap: 12px;
         }
 
         .tagline {
             font-size: 1.4rem;
-            font-weight: 500;
-            background: rgba(255, 68, 204, 0.15);
+            font-weight: 700;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(10px);
             display: inline-block;
-            padding: 8px 20px;
+            padding: 10px 24px;
             border-radius: 40px;
             margin: 20px 0 16px;
-            backdrop-filter: blur(4px);
+            border-left: 4px solid #ff44cc;
+            border-right: 2px solid #ffaa33;
         }
 
-        /* карточки для тезисов */
         .theses-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -198,7 +215,6 @@
             font-weight: 500;
         }
 
-        /* образование/опыт */
         .edu-list {
             display: flex;
             flex-direction: column;
@@ -232,7 +248,6 @@
             color: #FF44CC;
         }
 
-        /* контактная секция */
         .contact-block {
             background: linear-gradient(125deg, #0f0c14, #1a1525);
             border-radius: 48px;
@@ -288,6 +303,179 @@
         a {
             text-decoration: none;
         }
+
+        /* === МЯГКИЙ ЖИВОЙ ФОН === */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 20% 30%, rgba(255, 68, 204, 0.08), transparent 60%),
+                        radial-gradient(circle at 80% 70%, rgba(255, 179, 71, 0.06), transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* === ГЛУБИНА КОНТЕНТА === */
+        .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* === HERO ЧУТЬ ЖИВЕЕ === */
+        .hero-content {
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* === ФОТО "ДЫШИТ", НО БЕЗ КЛОУНАДЫ === */
+        .photo-frame {
+            animation: subtleFloat 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes subtleFloat {
+            from { transform: translateY(0px); }
+            to { transform: translateY(-8px); }
+        }
+
+        /* === КАРТОЧКИ С ГЛУБИНОЙ === */
+        .thesis-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .thesis-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, transparent, rgba(255,68,204,0.15), transparent);
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .thesis-card:hover::after {
+            opacity: 1;
+        }
+
+        /* === КНОПКИ БОЛЕЕ "ПРЕМИУМ" === */
+        .btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -120%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::after {
+            left: 120%;
+        }
+
+        /* === НЕОН ЧУТЬ ГЛУБЖЕ === */
+        .neon-glow {
+            text-shadow:
+                0 0 6px #ff44cc,
+                0 0 12px #ff44cc,
+                0 0 24px rgba(255,68,204,0.5);
+        }
+
+        /* === ЛЁГКИЙ ПАРАЛЛАКС ОЩУЩЕНИЕ === */
+        .section {
+            transform: translateZ(0);
+            transition: transform 0.3s ease;
+        }
+
+        /* ===== НОВЫЕ СТИЛИ ДЛЯ ОТЗЫВОВ ===== */
+        .feedback-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .feedback-card {
+            background: #13101A;
+            border-radius: 32px;
+            padding: 20px;
+            width: 280px;
+            transition: transform 0.2s ease, box-shadow 0.2s;
+            border: 1px solid #2a2533;
+            cursor: pointer;
+            text-align: center;
+        }
+        .feedback-card:hover {
+            transform: translateY(-6px);
+            border-color: #ff44cc;
+            box-shadow: 0 18px 30px -12px #ff44cc40;
+        }
+        .feedback-img {
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            transition: transform 0.2s;
+        }
+        .feedback-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+        .feedback-caption {
+            margin-top: 16px;
+            font-size: 0.9rem;
+            color: #bfb9d4;
+            font-weight: 500;
+        }
+        .feedback-caption i {
+            color: #FF44CC;
+            margin-right: 6px;
+        }
+        /* Лайтбокс для увеличения отзывов */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 20px;
+            box-shadow: 0 0 30px #ff44cc;
+            border: 2px solid #ff44cc;
+        }
+        .lightbox.active {
+            display: flex;
+        }
+        @media (max-width: 700px) {
+            .feedback-card {
+                width: 260px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -299,13 +487,21 @@
             <div class="provocative-badge">
                 <i class="fas fa-bolt"></i> провокация — твой новый ресурс
             </div>
-            <h1 style="font-size: 4rem; line-height: 1.1;">Прохор <span class="neon-glow">Руднев</span></h1>
+            <!-- Улучшенный H1 с ключевыми словами -->
+            <h1 style="font-size: 4rem; line-height: 1.1;">Прохор <span class="neon-glow">Руднев</span><br> <span style="font-size: 0.5em; display: block;">провокативный психолог, семейный и гипнотерапевт</span></h1>
             <div class="tagline">
-                <i class="fas fa-mask"></i> Психолог с провокативным подходом · Гипнотерапевт
+                <i class="fas fa-mask"></i> Психолог с провокативным подходом · Гипнотерапевт · Семейный терапевт
             </div>
+
+            <div style="margin-top: 12px; font-size: 0.95rem; opacity: 0.7;">
+                         Ты ведь не просто так это читаешь.
+            </div>
+
+            <!-- Обогащённый SEO-текст в первом абзаце -->
             <p style="font-size: 1.2rem; max-width: 550px; margin: 24px 0 32px;">
                 Работаю на стыке <strong>чуткости, абсурда и метафоры</strong>. Юмор, неожиданная логика и обострённое внимание к деталям. 
-                Чуткость — мать взаимопонимания. А проблемы с матерями — это наш хлеб!
+                Чуткость — мать взаимопонимания. А проблемы с матерями — это наш хлеб!<br>
+                <strong>Провокативный психолог, семейный и гипнотерапевт</strong> — помогаю парам, родителям и отдельным людям выйти из тупика. <strong>Онлайн-сессии по всей России — 4000₽</strong>.
             </p>
             <div style="display: flex; gap: 20px; flex-wrap: wrap;">
                 <a href="#contact" class="btn"><i class="fab fa-telegram"></i> Запустить провокацию</a>
@@ -314,15 +510,13 @@
         </div>
         <div class="hero-photo">
             <div class="photo-frame">
-                <!-- Замени src на путь к своей фотографии. Сейчас плейсхолдер с иконкой -->
-                <img id="user-photo" src="me-photo.jpg" alt="Прохор Руднев" style="background: #1e1929;">
-                <!-- Примечание: замените src на реальный URL вашего фото. Размер можно адаптировать -->
+                <img id="user-photo" src="me-photo.jpg" alt="Прохор Руднев — провокативный психолог и семейный терапевт" style="background: #1e1929;">
             </div>
             <p class="small-note" style="text-align: center; margin-top: 12px;"></p>
         </div>
     </div>
 
-    <!-- Опыт + гипнотерапия -->
+    <!-- Опыт + гипнотерапия + семейная терапия -->
     <div class="section">
         <h2><i class="fas fa-fire"></i> Опасный метод? Доверься абсурду</h2>
         <div class="flex-between" style="gap: 30px; flex-wrap: wrap;">
@@ -341,11 +535,12 @@
                 <div class="edu-item"><i class="fas fa-user-md"></i> Психолог-консультант (2024, Talentsy)</div>
                 <div class="edu-item"><i class="fas fa-theater-masks"></i> Практика провокативной психотерапии — мастерская Дениса Булидорова (2024)</div>
                 <div class="edu-item"><i class="fas fa-graduation-cap"></i> Спикер на международной конфереции по парадоксальной и провокативной психотерапии (2026)</div>
+                <div class="edu-item"><i class="fas fa-heart"></i> Семейный системный терапевт</div>
             </div>
         </div>
     </div>
 
-    <!-- ТЕЗИСЫ ИЗ ПРАКТИКИ (ядро провокации) -->
+    <!-- ТЕЗИСЫ (ДОБАВЛЕНО ЕЩЁ ДВА) -->
     <div class="section" id="theses">
         <h2><i class="fas fa-quote-right"></i> Тезисы из практики</h2>
         <p style="margin-bottom: 30px; font-size: 1.1rem;">Парадоксальные истины, которые взорвут твой внутренний диалог</p>
@@ -378,44 +573,46 @@
                 <div class="thesis-icon"><i class="fas fa-gavel"></i></div>
                 <p>Боишься осуждения? Посмотри на внутреннего прокурора и скажи: «Уважаемый суд, дело закрыто. Состава преступления нет».</p>
             </div>
+            <!-- ДВА НОВЫХ ТЕЗИСА -->
+            <div class="thesis-card">
+                <div class="thesis-icon"><i class="fas fa-hourglass-start"></i></div>
+                <p>Прокрастинация — это как откладывать секс на потом. В итоге оргазм получает твой дедлайн, а ты — чувство вины. Хватит быть "потом". Пора быть "сейчас".</p>
+            </div>
+            <div class="thesis-card">
+                <div class="thesis-icon"><i class="fas fa-fist-raised"></i></div>
+                <p>Твоя ошибка — не фиаско, а первый черновик гениального решения. Даже у ядерного реактора есть кнопка перезагрузки.</p>
+            </div>
         </div>
     </div>
 
-    <!-- Образование + Стоимость -->
+    <!-- НОВЫЙ БЛОК С ОТЗЫВАМИ (3 картинки из папки feedback\) -->
     <div class="section">
-        <div class="flex-between" style="gap: 40px;">
-            <div style="flex: 1;">
-                <h2><i class="fas fa-book-open"></i> Образование & Инструменты</h2>
-                <div class="edu-list">
-                    <div class="edu-item">🎓 2023 — Talentsy: «Ориентированная на решение краткосрочная терапия»</div>
-                    <div class="edu-item">📚 2024 — Talentsy: проф. подготовка «Психолог-консультант»</div>
-                    <div class="edu-item">🔥 2024 — Мастерская Дениса Булидорова: «Практика провокативной психотерапии»</div>
-                    <div class="edu-item">🧠 2025 — Ведущий практических занятий по провокативной терапии</div>
-                    <div class="edu-item">🌙 Гипнотерапия: эриксоновский гипноз, интегративный подход</div>
+        <h2><i class="fas fa-comment-dots"></i> Отзывы — без цензуры</h2>
+        <p style="margin-bottom: 20px; font-size: 1.1rem;">То, что говорят те, кто уже рискнул</p>
+        <div class="feedback-grid">
+            <div class="feedback-card" onclick="openLightbox('feedback/feed1.jpg')">
+                <div class="feedback-img">
+                    <img src="feedback/feed1.jpg" alt="Отзыв клиента 1" loading="lazy">
                 </div>
+                <div class="feedback-caption"><i class="fas fa-star"></i> Елена </div>
             </div>
-            <div style="flex: 1;">
-                <h2><i class="fas fa-ruble-sign"></i> Инвестиция в себя</h2>
-                <div class="price-box">
-                    <div class="price-card">
-                        <i class="fas fa-laptop" style="font-size: 2rem;"></i>
-                        <div class="price-number">4 000 ₽</div>
-                        <p>онлайн-сессия (60 мин)</p>
-                        <span class="small-note">Яндекс телемост / МТС Link / любой удобный формат</span>
-                    </div>
-                    <div class="price-card">
-                        <i class="fas fa-hand-peace"></i>
-                        <div class="price-number">договорная</div>
-                        <p>офлайн-встреча</p>
-                        <span class="small-note">личное присутствие, обсуждаем индивидуально</span>
-                    </div>
+            <div class="feedback-card" onclick="openLightbox('feedback/feed2.jpg')">
+                <div class="feedback-img">
+                    <img src="feedback/feed2.jpg" alt="Отзыв клиента 2" loading="lazy">
                 </div>
-                <div class="small-note" style="margin-top: 12px;"><i class="fas fa-clock"></i> Длительность сессии: 60 минут. Работаю бережно, но без лишней "ваты".</div>
+                <div class="feedback-caption"><i class="fas fa-star"></i> Екатерина </div>
+            </div>
+            <div class="feedback-card" onclick="openLightbox('feedback/feed3.jpg')">
+                <div class="feedback-img">
+                    <img src="feedback/feed3.jpg" alt="Отзыв клиента 3" loading="lazy">
+                </div>
+                <div class="feedback-caption"><i class="fas fa-star"></i> Роман </div>
             </div>
         </div>
+        <p class="small-note" style="text-align: center; margin-top: 24px;"><i class="fas fa-shield-alt"></i> Все отзывы опубликованы с согласия клиентов. Нажми на картинку, чтобы увеличить.</p>
     </div>
 
-    <!-- Провокация-бонус: как это выглядит + дополнительный блок метафор -->
+    <!-- Провокация-бонус -->
     <div class="section">
         <div style="background: #0F0C14; border-radius: 48px; padding: 40px 32px; border: 1px solid #ff44cc60;">
             <h2 style="border-left-color: #FFB347;"><i class="fas fa-dragon"></i> Почему провокация + гипноз?</h2>
@@ -449,62 +646,155 @@
                 <a href="https://t.me/ProvokeExpert" class="btn" style="background: #26A5E4; box-shadow: 0 0 12px #26A5E4;"><i class="fab fa-telegram"></i> Telegram: @ProvokeExpert</a>
                 <a href="mailto:ifakoya@yandex.ru" class="btn-outline btn"><i class="fas fa-envelope"></i> ifakoya@yandex.ru</a>
                 <a href="https://max.ru/u/f9LHodD0cOKa02Wv2i-GhU8WpZ56BR9-GzqYa_IVT8cWZMo2uZAIoRPBTSU" target="_blank" rel="noopener noreferrer" class="btn-outline btn" style="border-color:rgb(46, 10, 250); color:#508cfd;">
-    <i class="fas fa-comment-dots"></i> MAX
-</a>
+                    <i class="fas fa-comment-dots"></i> MAX
+                </a>
             </div>
 
-<!-- Блок с авторскими курсами (можно вставить внутрь .contact-block после существующих кнопок или отдельным блоком) -->
-<div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255, 68, 204, 0.3);">
-    <h3 style="font-size: 1.6rem; margin-bottom: 20px; color: #FF44CC;">📚 Авторские курсы</h3>
-    <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-        <a href="./witch/witch.html" target="_blank" rel="noopener noreferrer" class="btn" style="background: #8B5CF6; box-shadow: 0 0 12px #8B5CF6;">
-            <i class="fas fa-moon"></i> Психология ведьмы
-        </a>
-        <a href="./demon/demon.html" target="_blank" rel="noopener noreferrer" class="btn" style="background: #2C3E66; box-shadow: 0 0 12px #2C3E66;">
-            <i class="fas fa-skull"></i> ДЕМОНОЛОГИЯ: Психология теневой власти
-        </a>
-        <a href="./ori/ori.html" target="_blank" rel="noopener noreferrer" class="btn" style="background: #aa232a; box-shadow: 0 0 12px #2C3E66;">
-            ТРЕХДНЕВНЫЙ ОЧНЫЙ ТРЕНИНГ: Психология ВУДУ. Кровь, Тьма и ПереРождение
-        </a>
-    </div>
-</div>
-
+            <!-- Блок с авторскими курсами -->
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255, 68, 204, 0.3);">
+                <h3 style="font-size: 1.6rem; margin-bottom: 20px; color: #FF44CC;">📚 Авторские курсы</h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+                    <a href="./witch/witch.html" target="_blank" rel="noopener noreferrer" class="btn" style="background: #8B5CF6; box-shadow: 0 0 12px #8B5CF6;">
+                        <i class="fas fa-moon"></i> Психология ведьмы
+                    </a>
+                    <a href="./demon/demon.html" target="_blank" rel="noopener noreferrer" class="btn" style="background: #2C3E66; box-shadow: 0 0 12px #2C3E66;">
+                        <i class="fas fa-skull"></i> ДЕМОНОЛОГИЯ: Психология теневой власти
+                    </a>
+                    <a href="./ori/ori.html" target="_blank" rel="noopener noreferrer" class="btn" style="background: #aa232a; box-shadow: 0 0 12px #2C3E66;">
+                        ТРЕХДНЕВНЫЙ ОЧНЫЙ ТРЕНИНГ: Психология ВУДУ. Кровь, Тьма и ПереРождение
+                    </a>
+                </div>
+            </div>
             <p class="small-note" style="margin-top: 28px;"><i class="fas fa-shield-alt"></i> Все данные конфиденциальны. Юмор и провокация — только в безопасной терапевтической среде.</p>
         </div>
     </div>
 
     <footer>
-        <p>© Прохор Руднев — провокативная психотерапия, гипнотерапия. Чуткость + абсурд = твоя новая свобода.</p>
+        <p>© Прохор Руднев — провокативная психотерапия, гипнотерапия, семейная терапия. Чуткость + абсурд = твоя новая свобода.</p>
     </footer>
 </div>
 
-<!-- маленький скрипт для динамической подсказки замены фото и контактов, а также лёгкий эффект -->
+<!-- Лайтбокс для увеличения отзывов -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="Увеличенный отзыв">
+</div>
+
 <script>
+    // Функции для лайтбокса
+    function openLightbox(src) {
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightbox-img');
+        lbImg.src = src;
+        lb.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+        const lb = document.getElementById('lightbox');
+        lb.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    // Закрыть по Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeLightbox();
+        }
+    });
+</script>
+
+<!-- Schema.org JSON-LD (без изменений) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Прохор Руднев",
+  "alternateName": "Провокативный психолог, семейный и гипнотерапевт",
+  "description": "Провокативная психотерапия, гипнотерапия, семейное консультирование. Онлайн-сессии 4000₽.",
+  "url": "https://provoke.expert",
+  "logo": "me-photo.jpg",
+  "image": "me-photo.jpg",
+  "priceRange": "₽4000",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "RU"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "telegram",
+    "url": "https://t.me/ProvokeExpert",
+    "availableLanguage": "Russian"
+  },
+  "areaServed": "RU",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Услуги психолога",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Онлайн-сессия",
+          "price": "4000",
+          "priceCurrency": "RUB"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Семейная терапия",
+          "price": "договорная"
+        }
+      }
+    ]
+  }
+}
+</script>
+
+<script>
+    // МЯГКИЙ ПАРАЛЛАКС (очень аккуратный)
+    document.addEventListener("mousemove", (e) => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 6;
+        const y = (e.clientY / window.innerHeight - 0.5) * 6;
+
+        document.querySelectorAll(".thesis-card").forEach(el => {
+            el.style.transform = `translate(${x}px, ${y}px)`;
+        });
+    });
+
+    // ЖИВАЯ TAGLINE (но без цирка)
+    const phrases = [
+        "Психолог с провокативным подходом",
+        "Иногда правда звучит странно",
+        "Юмор — самый быстрый путь к инсайту",
+        "Ты уже почти понял(а), в чём дело"
+    ];
+
+    setInterval(() => {
+        const el = document.querySelector(".tagline");
+        if (!el) return;
+
+        el.style.opacity = 0;
+
+        setTimeout(() => {
+            el.innerHTML = `<i class="fas fa-mask"></i> ${phrases[Math.floor(Math.random()*phrases.length)]}`;
+            el.style.opacity = 1;
+        }, 300);
+
+    }, 6000);
+
     (function() {
-        // даём знать, что фото можно заменить
         const imgElement = document.getElementById('user-photo');
         if(imgElement) {
-            // просто комментарий в консоль не мешает
-            console.log('💥 Для добавления своего фото замени src у #user-photo на путь к изображению. Формат: квадратное, высокое качество.');
+            console.log('💥 SEO-оптимизированная версия. Для своего фото замени me-photo.jpg и пропишите корректный путь.');
         }
-        // Демо-замена ссылок для примера (ничего не ломаем)
-        const waLink = document.querySelector('#fake-wa');
-        if(waLink) {
-            waLink.addEventListener('click', (e) => {
-                e.preventDefault();
-            });
-        }
-        // добавляем интерактивную искру
         const btns = document.querySelectorAll('.btn, .btn-outline');
         btns.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 if(btn.getAttribute('href') === '#' || btn.getAttribute('href') === '#contact' || btn.getAttribute('href') === '#theses') {
-                    // для навигации всё ок
                     return;
                 }
-                if(btn.id === 'fake-wa') return; // уже обработано
+                if(btn.id === 'fake-wa') return;
                 if(btn.getAttribute('href') && (btn.getAttribute('href').startsWith('mailto:') || btn.getAttribute('href').startsWith('https://t.me'))) {
-                    // разрешаем переход
                     return;
                 }
                 if(!btn.getAttribute('href') || btn.getAttribute('href') === '#') {
@@ -515,5 +805,20 @@
         });
     })();
 </script>
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108697860', 'ym');
+
+    ym(108697860, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/108697860" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+ 
 </body>
 </html>
